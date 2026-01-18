@@ -38,9 +38,6 @@ namespace BetterLogging.Core
                 prompt,
                 cancellationToken);
 
-            Console.WriteLine("RAW AI RESPONSE:");
-            Console.WriteLine(rawResponse);
-
             return ResponseParser.Parse(rawResponse);
         }
     }
