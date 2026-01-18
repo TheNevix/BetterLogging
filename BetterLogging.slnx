@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BetterLogging.TestApp/BetterLogging.TestApp.csproj" />
+  <Project Path="BetterLogging/BetterLogging.csproj" />
+</Solution>
