@@ -1,11 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BetterLogging.Configuration
+﻿namespace BetterLogging.Configuration
 {
-    public enum AiModel
+    public sealed class AiModel
     {
-        Gemini
+        public string Provider { get; }
+        public string Name { get; }
+
+
+        internal AiModel(string provider, string name)
+        {
+            Provider = provider;
+            Name = name;
+        }
+
+        public override string ToString() => $"{Provider}:{Name}";
     }
 }

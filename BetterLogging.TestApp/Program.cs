@@ -1,5 +1,6 @@
 ﻿using BetterLogging;
 using BetterLogging.Abstractions;
+using BetterLogging.Configuration;
 using BetterLogging.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -10,8 +11,8 @@ services.AddLogging(builder => builder.AddConsole());
 
 services.AddBetterLoggingServices(options =>
 {
-    options.Model = BetterLogging.Configuration.AiModel.Gemini;
-    options.ApiKey = "";
+    options.Model = Gemini.Models.Flash2_5;
+    options.ApiKey = "AIzaSyCKj0NY2WoC3wImN-GyXQ_gvMToIGxBTtI";
 });
 
 var provider = services.BuildServiceProvider();

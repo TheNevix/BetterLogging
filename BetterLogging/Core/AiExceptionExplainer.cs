@@ -1,23 +1,21 @@
 ﻿using BetterLogging.Abstractions;
 using BetterLogging.Configuration;
 using BetterLogging.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BetterLogging.Core
 {
     public sealed class AiExceptionExplainer : IAiExceptionExplainer
     {
-        private readonly IAiProvider _provider;
+        private readonly IServiceProvider _serviceProvider;
         private readonly BetterLoggingOptions _options;
 
         public AiExceptionExplainer(
-            IAiProvider provider,
+            IServiceProvider serviceProvider,
             IOptions<BetterLoggingOptions> options)
         {
-            _provider = provider;
+            _serviceProvider = serviceProvider;
             _options = options.Value;
         }
 
@@ -27,6 +25,11 @@ namespace BetterLogging.Core
         {
             ArgumentNullException.ThrowIfNull(exception);
 
+            var model = _options.Model;
+
+            var provider = _serviceProvider
+                .GetRequiredKeyedService<IAiProvider>(model.Provider);
+
             var serializedException = ExceptionSerializer.Serialize(
                 exception,
                 _options.MaxStackTraceLines,
@@ -34,8 +37,9 @@ namespace BetterLogging.Core
 
             var prompt = PromptBuilder.Build(serializedException);
 
-            var rawResponse = await _provider.GenerateAsync(
+            var rawResponse = await provider.GenerateAsync(
                 prompt,
+                model,
                 cancellationToken);
 
             return ResponseParser.Parse(rawResponse);

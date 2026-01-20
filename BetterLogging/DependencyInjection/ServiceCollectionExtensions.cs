@@ -16,15 +16,10 @@ namespace BetterLogging.DependencyInjection
             services.Configure(configure);
 
             // Todo: Uncomment and implement AI providers when ready
-            services.AddSingleton<IAiProvider>(sp =>
+            services.AddKeyedSingleton<IAiProvider>("Gemini", (sp, key) =>
             {
                 var options = sp.GetRequiredService<IOptions<BetterLoggingOptions>>().Value;
-
-                return options.Model switch
-                {
-                    AiModel.Gemini => new GeminiProvider(options.ApiKey),
-                    _ => throw new NotSupportedException("Unsupported AI model")
-                };
+                return new GeminiProvider(options.ApiKey);
             });
 
             services.AddSingleton<IAiExceptionExplainer, AiExceptionExplainer>();

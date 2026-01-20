@@ -1,4 +1,5 @@
 ﻿using BetterLogging.Abstractions;
+using BetterLogging.Configuration;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -6,8 +7,10 @@ namespace BetterLogging.Providers;
 
 public sealed class GeminiProvider : IAiProvider
 {
-    private const string Endpoint =
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent";
+    public string ProviderName => "Gemini";
+
+    private string Endpoint =
+        $"https://generativelanguage.googleapis.com/v1beta/models/MODELNAMETOREPLACE:generateContent";
 
     private readonly HttpClient _httpClient;
     private readonly string _apiKey;
@@ -23,8 +26,11 @@ public sealed class GeminiProvider : IAiProvider
 
     public async Task<string> GenerateAsync(
         string prompt,
+        AiModel model,
         CancellationToken cancellationToken = default)
     {
+        Endpoint = Endpoint.Replace("MODELNAMETOREPLACE", model.Name);
+
         var request = new
         {
             contents = new[]
