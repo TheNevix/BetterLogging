@@ -1,3 +1,4 @@
+![BetterLogging Banner](assets/banner.png)
 # BetterLogging
 
 ![NuGet](https://img.shields.io/nuget/v/BetterLogging) ![NuGet Downloads](https://img.shields.io/nuget/dt/BetterLogging)
