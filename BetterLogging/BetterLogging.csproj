@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>BetterLogging</Title>
-    <Version>1.0.0-alpha260118-2</Version>
+    <Version>1.0.0-alpha260122</Version>
     <Authors>TheNevix</Authors>
     <Company>TheNevix</Company>
     <Description>AI-powered exception analysis and structured logging for .NET.</Description>
@@ -15,9 +15,17 @@
     <PackageTags>logging;ai;exceptions;gemini;dotnet</PackageTags>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReleaseNotes>Cleaned up the setup.
+Added icon.
+Updated readme.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

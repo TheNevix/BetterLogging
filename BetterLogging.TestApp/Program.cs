@@ -11,8 +11,8 @@ services.AddLogging(builder => builder.AddConsole());
 
 services.AddBetterLoggingServices(options =>
 {
-    options.Model = Gemini.Models.Flash2_5;
-    options.ApiKey = "AIzaSyCKj0NY2WoC3wImN-GyXQ_gvMToIGxBTtI";
+    options.Model = Gemini.Models.FlashLite2_5;
+    options.ApiKey = "";
 });
 
 var provider = services.BuildServiceProvider();
