@@ -42,12 +42,12 @@ dotnet add package BetterLogging --prerelease
 ## Usage
 
 ### Register service
-Add the custom services in your program.cs. For now, only the Gemini model 2.5-flash-lite is supported. It is set by default.
+Add the custom services in your program.cs.
 
 ```csharp
 services.AddBetterLoggingServices(options =>
 {
-    options.Model = BetterLogging.Configuration.AiModel.Gemini;
+    options.Model = Gemini.Models.FlashLite2_5;
     options.ApiKey = "YOUR API-KEY";
 });
 ```
